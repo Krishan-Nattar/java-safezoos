@@ -16,6 +16,8 @@ public interface ZooService
 
     void delete(long id);
 
+    void deleteAnimalsFromZoo(long zooid, long animalid);
+
     Zoo save(Zoo zoo);
 
     Zoo update(Zoo zoo, long id);

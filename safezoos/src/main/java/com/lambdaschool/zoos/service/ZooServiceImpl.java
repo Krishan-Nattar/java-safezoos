@@ -49,6 +49,20 @@ public class ZooServiceImpl implements ZooService
 
     @Transactional
     @Override
+    public void deleteAnimalsFromZoo(long zooid, long animalid) throws EntityNotFoundException
+    {
+        if (zoorepos.findById(zooid).isPresent())
+        {
+            zoorepos.deleteAnimalsFromZooanimals(zooid, animalid);
+            logger.info("Animal Deleted");
+        }else
+        {
+            throw new EntityNotFoundException(Long.toString(zooid));
+        }
+    }
+
+    @Transactional
+    @Override
     public void delete(long id) throws EntityNotFoundException
     {
         if (zoorepos.findById(id).isPresent())
