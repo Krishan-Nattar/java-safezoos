@@ -12,6 +12,8 @@ public interface ZooService
 
     Zoo findZooByName(String name);
 
+//    Zoo findZooByZooname(String name);
+
     void delete(long id);
 
     Zoo save(Zoo zoo);
