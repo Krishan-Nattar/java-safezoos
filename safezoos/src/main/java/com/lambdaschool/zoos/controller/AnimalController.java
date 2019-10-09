@@ -30,7 +30,8 @@ public class AnimalController
         List<JustTheCount> myList = animalService.getCountZooanimals();
         return new ResponseEntity<>(myList, HttpStatus.OK);
     }
-//    GET /animals/count - that returns a JSON object list listing the animals and a
+
+    //    GET /animals/count - that returns a JSON object list listing the animals and a
 //    count of how many zoos where they can be found. Use a custom query for this.
 
     @GetMapping(value = "/animals",

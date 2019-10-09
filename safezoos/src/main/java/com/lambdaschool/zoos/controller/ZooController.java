@@ -17,6 +17,17 @@ public class ZooController
     @Autowired
     private ZooService zooService;
 
+//    GET /zoos/zoos/{id} - returns all information related to a zoo based on its id
+
+    @GetMapping(value = "/zoos/{id}",
+    produces = {"application/json"})
+    public ResponseEntity<?> findZooById(@PathVariable long id)
+    {
+        Zoo z = zooService.findZooById(id);
+        return new ResponseEntity<>(z, HttpStatus.OK);
+    }
+
+
     // GET: localhost:2019/zoos/zoos
     @GetMapping(value = "/zoos", produces = {"application/json"})
     public ResponseEntity<?> listAllZoos()
