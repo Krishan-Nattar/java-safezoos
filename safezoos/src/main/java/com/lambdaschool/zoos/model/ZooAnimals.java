@@ -8,8 +8,6 @@ import java.util.Objects;
 @Table(name = "zooanimals")
 public class ZooAnimals extends Auditable implements Serializable
 {
-
-
     @Id
     @ManyToOne
     @JsonIgnoreProperties("zooAnimals")
@@ -52,24 +50,24 @@ public class ZooAnimals extends Auditable implements Serializable
         this.animal = animal;
     }
 
-//    @Override
-//    public boolean equals(Object o)
-//    {
-//        if (this == o)
-//        {
-//            return true;
-//        }
-//        if (!(o instanceof ZooAnimals))
-//        {
-//            return false;
-//        }
-//        ZooAnimals that = (ZooAnimals) o;
-//        return Objects.equals(getZoo(), that.getZoo()) && Objects.equals(getAnimal(), that.getAnimal());
-//    }
-//
-//    @Override
-//    public int hashCode()
-//    {
-//        return Objects.hash(getZoo(), getAnimal());
-//    }
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (!(o instanceof ZooAnimals))
+        {
+            return false;
+        }
+        ZooAnimals that = (ZooAnimals) o;
+        return Objects.equals(getZoo(), that.getZoo()) && Objects.equals(getAnimal(), that.getAnimal());
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getZoo(), getAnimal());
+    }
 }
