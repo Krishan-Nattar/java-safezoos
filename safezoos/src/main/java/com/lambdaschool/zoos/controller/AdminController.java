@@ -1,6 +1,7 @@
 package com.lambdaschool.zoos.controller;
 
 import com.lambdaschool.zoos.model.Zoo;
+import com.lambdaschool.zoos.service.AnimalService;
 import com.lambdaschool.zoos.service.ZooService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +21,26 @@ public class AdminController
 {
     @Autowired
     ZooService zooService;
+
+    @Autowired
+    AnimalService animalService;
+
+    @DeleteMapping(value = "/zoos/{zooid}/animals/{animalid}")
+    public ResponseEntity<?> DeleteAnimalFromZoo(@PathVariable long zooid, @PathVariable long animalid)
+    {
+//        Zoo z = zooService.findZooById(zooid);
+        zooService.deleteAnimalsFromZoo(zooid, animalid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/zoos/{zooid}/animals/{animalid}",
+    consumes = {"application/json"},
+    produces = {"application/json"})
+    public ResponseEntity<?> addAnimalToZoo(@PathVariable long zooid, @PathVariable long animalid)
+    {
+        zooService.addAnimalsToZoo(zooid, animalid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @PutMapping(value = "/zoos/{id}",
                 produces = {"application/json"},

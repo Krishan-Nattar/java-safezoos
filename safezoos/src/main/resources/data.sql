@@ -11,7 +11,7 @@ DELETE
 FROM zoo;
 
 INSERT INTO zoo (zooid, zooname)
-         VALUES (1, 'Gladys Porter Zoo'),
+         VALUES (1, 'Portland Zoo'),
                 (2, 'Point Defiance Zoo'),
                 (3, 'San Diego Zoo'),
                 (4, 'San Antonio Zoo'),

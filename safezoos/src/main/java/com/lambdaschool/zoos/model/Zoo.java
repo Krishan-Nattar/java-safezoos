@@ -2,13 +2,19 @@ package com.lambdaschool.zoos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity
 @Table(name = "zoo")
-public class Zoo
+public class Zoo extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +32,10 @@ public class Zoo
     @JoinTable(name = "zooanimals",
                joinColumns = {@JoinColumn(name = "zooid")},
                inverseJoinColumns = {@JoinColumn(name = "animalid")})
+
+//    @CreatedDate //Spring adds underscores.
+//    @Temporal(TIMESTAMP) //This tells Spring how we want the date to be formatted.
+//    protected Date createdDate;
     @JsonIgnoreProperties("zoos")
     private List<Animal> animals = new ArrayList<>();
 

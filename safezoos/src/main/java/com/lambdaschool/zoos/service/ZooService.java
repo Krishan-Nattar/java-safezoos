@@ -12,7 +12,13 @@ public interface ZooService
 
     Zoo findZooByName(String name);
 
+//    Zoo findZooByZooname(String name);
+
     void delete(long id);
+
+    void deleteAnimalsFromZoo(long zooid, long animalid);
+
+    void addAnimalsToZoo(long zooid, long animalid);
 
     Zoo save(Zoo zoo);
 

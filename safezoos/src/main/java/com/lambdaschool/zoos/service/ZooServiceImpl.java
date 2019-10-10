@@ -39,7 +39,40 @@ public class ZooServiceImpl implements ZooService
     @Override
     public Zoo findZooByName(String name) throws EntityNotFoundException
     {
-        return null;
+        Zoo z = zoorepos.findByZooname(name);
+        if(z == null)
+        {
+            throw new EntityNotFoundException("cannot find zoo with name: " + name);
+        }
+        return z;
+    }
+
+    @Transactional
+    @Override
+    public void deleteAnimalsFromZoo(long zooid, long animalid) throws EntityNotFoundException
+    {
+        if (zoorepos.findById(zooid).isPresent())
+        {
+            zoorepos.deleteAnimalsFromZooanimals(zooid, animalid);
+            logger.info("Animal Deleted");
+        }else
+        {
+            throw new EntityNotFoundException(Long.toString(zooid));
+        }
+    }
+
+    @Transactional
+    @Override
+    public void addAnimalsToZoo(long zooid, long animalid) throws EntityNotFoundException
+    {
+        if (zoorepos.findById(zooid).isPresent())
+        {
+            zoorepos.addAnimalToZooanimals(zooid, animalid);
+            logger.info("Animal Added");
+        }else
+        {
+            throw new EntityNotFoundException(Long.toString(zooid));
+        }
     }
 
     @Transactional
