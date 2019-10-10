@@ -10,8 +10,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// User is considered the parent entity of all - the Grand Poobah!
-
 @Entity
 @Table(name = "users")
 public class User extends Auditable
@@ -31,12 +29,6 @@ public class User extends Auditable
             cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "user",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    @JsonIgnoreProperties("user")
-//    private List<Quote> quotes = new ArrayList<>();
 
     public User()
     {

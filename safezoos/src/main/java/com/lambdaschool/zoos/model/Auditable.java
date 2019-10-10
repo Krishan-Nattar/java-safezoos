@@ -1,6 +1,5 @@
 package com.lambdaschool.zoos.model;
 
-
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -15,26 +14,21 @@ import java.util.Date;
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 
-@MappedSuperclass //Super class means we're never going to instantiate it, or make a direct object of it
-@EntityListeners(AuditingEntityListener.class) //Listeners are servivces that run in the background that spring manages for us
-// Every time something happens to an @Entity, spring will check this class to see if it needs to update/do something.
-//We are specifically working with the AuditingEntityListener
-abstract class Auditable //For any field we want all these fields, we just need to extend auditable
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+abstract class Auditable
 {
-    @CreatedBy //The field is named based on these annotations
-    protected String createdBy; //These can be technically named anything as the actual names are created by the annotations that come before.
-    //It is essentially a placeholder
+    @CreatedBy
+    protected String createdBy;
 
-    @CreatedDate //Spring adds underscores.
-    @Temporal(TIMESTAMP) //This tells Spring how we want the date to be formatted.
+    @CreatedDate
+    @Temporal(TIMESTAMP)
     protected Date createdDate;
 
-    @LastModifiedBy //These annotations are essentially "Setters"
+    @LastModifiedBy
     protected String lastModifiedBy;
 
     @LastModifiedDate
     @Temporal(TIMESTAMP)
     protected Date lastModifiedDate;
-
-
 }
