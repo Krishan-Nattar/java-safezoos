@@ -33,6 +33,15 @@ public class AdminController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping(value = "/zoos/{zooid}/animals/{animalid}",
+    consumes = {"application/json"},
+    produces = {"application/json"})
+    public ResponseEntity<?> addAnimalToZoo(@PathVariable long zooid, @PathVariable long animalid)
+    {
+        zooService.addAnimalsToZoo(zooid, animalid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PutMapping(value = "/zoos/{id}",
                 produces = {"application/json"},
                 consumes = {"application/json"})

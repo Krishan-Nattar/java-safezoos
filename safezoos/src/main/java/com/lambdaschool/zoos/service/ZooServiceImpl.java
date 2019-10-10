@@ -63,6 +63,20 @@ public class ZooServiceImpl implements ZooService
 
     @Transactional
     @Override
+    public void addAnimalsToZoo(long zooid, long animalid) throws EntityNotFoundException
+    {
+        if (zoorepos.findById(zooid).isPresent())
+        {
+            zoorepos.addAnimalToZooanimals(zooid, animalid);
+            logger.info("Animal Added");
+        }else
+        {
+            throw new EntityNotFoundException(Long.toString(zooid));
+        }
+    }
+
+    @Transactional
+    @Override
     public void delete(long id) throws EntityNotFoundException
     {
         if (zoorepos.findById(id).isPresent())

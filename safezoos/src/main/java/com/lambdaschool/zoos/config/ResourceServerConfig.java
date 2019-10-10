@@ -34,7 +34,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                         "/swagger-ui.html",
                         "/v2/api-docs",
                         "/webjars/**").permitAll() //Everyone has access to these
-                .antMatchers("/admin/**", "/animals/**", "/zoos/**").authenticated()
+                .antMatchers("/admin/**", "/animals/**", "/zoos/**", "/users/**").authenticated()
+                .antMatchers("/users/**").hasAnyRole("ADMIN")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/zoos/**").hasAnyRole("ZOODATA", "ADMIN", "MGR")
                 .antMatchers("/animals/**").hasAnyRole("ANIMALDATA", "MGR", "ADMIN")

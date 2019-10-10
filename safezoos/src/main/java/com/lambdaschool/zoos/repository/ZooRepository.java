@@ -10,6 +10,10 @@ public interface ZooRepository extends CrudRepository<Zoo, Long>
 {
 
     @Modifying
+    @Query(value = "INSERT INTO zooanimals(zooid, animalid) VALUES(:zooid, :animalid)", nativeQuery = true)
+    void addAnimalToZooanimals(long zooid, long animalid);
+
+    @Modifying
     @Query(value = "DELETE FROM zooanimals WHERE animalid = :animalid AND zooid = :zooid", nativeQuery = true)
     void deleteAnimalsFromZooanimals(long zooid, long animalid);
 
